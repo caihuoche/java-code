@@ -1,9 +1,6 @@
-package com.example.demo;
-
-import com.alibaba.fastjson.JSON;
+package com.example.demo.sign;
 
 import java.security.MessageDigest;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 

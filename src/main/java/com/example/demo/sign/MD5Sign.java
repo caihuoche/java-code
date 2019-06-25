@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.sign;
 
 import org.springframework.util.DigestUtils;
 
@@ -11,11 +11,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-
-import javax.servlet.http.HttpServletRequest;
-
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author yanghaiyu

@@ -1,6 +1,7 @@
 package com.example.demo.nio;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectableChannel;
@@ -46,12 +47,12 @@ public class TestNoBlock {
 					socketChannel.configureBlocking(false);
 					socketChannel.register(selector, SelectionKey.OP_READ);
 				} else if (next.isReadable()) {
-					SocketChannel socketChannel  = (SocketChannel) next.channel();
+					SocketChannel socketChannel = (SocketChannel) next.channel();
 					ByteBuffer allocate = ByteBuffer.allocate(1024);
 					int len = 0;
 
 					// 这里判断事>0 大于0是有数据 如果判断不等于-1 会有问题, 没数据也会进来.
-					while ((len = socketChannel.read(allocate)) >0) {
+					while ((len = socketChannel.read(allocate)) > 0) {
 						allocate.flip();
 						System.out.println(new Date() + "\n" + new String(allocate.array(), 0, len));
 						allocate.clear();
@@ -67,28 +68,68 @@ public class TestNoBlock {
 	 */
 	@Test
 	public void t2() throws IOException {
-		SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1",8989));
+		SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 8989));
 		socketChannel.configureBlocking(false);
 		//Scanner scanner = new Scanner(System.in);
 		ByteBuffer allocate = ByteBuffer.allocate(1024);
 		//	String next = scanner.next();
-			allocate.put("哈哈".getBytes());
-			allocate.flip();
-			socketChannel.write(allocate);
-			allocate.clear();
+		allocate.put("哈哈".getBytes());
+		allocate.flip();
+		socketChannel.write(allocate);
+		allocate.clear();
 	}
 
 	public static void main(String[] args) throws IOException {
 		SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 8989));
 		socketChannel.configureBlocking(false);
+
+		Selector selector = Selector.open();
+		socketChannel.register(selector, SelectionKey.OP_READ);
+
 		Scanner scanner = new Scanner(System.in);
 		ByteBuffer allocate = ByteBuffer.allocate(1024);
-		while (true){
-			String next = scanner.next();
-			allocate.put(next.getBytes());
-			allocate.flip();
-			socketChannel.write(allocate);
-			allocate.clear();
+
+		new Thread(() -> {
+			while (true) {
+				String next = scanner.next();
+				try {
+					allocate.put(next.getBytes("utf-8"));
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				allocate.flip();
+				try {
+					socketChannel.write(allocate);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				allocate.clear();
+			}
+
+		}).start();
+
+		ByteBuffer buffer = ByteBuffer.allocate(1024);
+		while (true) {
+			if (selector.select() > 0) {
+				Set<SelectionKey> selectionKeys = selector.selectedKeys();
+				selectionKeys.forEach(selectionKey -> {
+					if (selectionKey.isReadable()) {
+						SocketChannel channel = (SocketChannel) selectionKey.channel();
+						try {
+							int len = 0;
+							while ((len = channel.read(buffer)) > 0) {
+								buffer.flip();
+								System.out.println(new String(buffer.array(), 0, len));
+								buffer.clear();
+							}
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
 		}
+
 	}
 }

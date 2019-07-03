@@ -22,7 +22,7 @@ public class MinaTimeServer {
 		//创建服务端
 		NioSocketAcceptor acceptor = new NioSocketAcceptor();
 
-		// 添加过滤器, 客户端链接以后所有接受的消息都会经过过滤器
+		// 添加过滤器, 客户端链接以后所有接受的消息都会先经过过滤器
 		acceptor.getFilterChain().addLast("logger",new LoggingFilter());
 		acceptor.getFilterChain().addLast("protocol",new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("utf-8"))));
 

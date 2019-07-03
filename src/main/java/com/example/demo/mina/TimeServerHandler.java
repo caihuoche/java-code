@@ -21,17 +21,18 @@ public class TimeServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionOpened(IoSession ioSession) throws Exception {
+		System.out.println("打开了啊");
 
 	}
 
 	@Override
 	public void sessionClosed(IoSession ioSession) throws Exception {
-
+		System.out.println("关闭了啊");
 	}
 
 	@Override
 	public void sessionIdle(IoSession ioSession, IdleStatus idleStatus) throws Exception {
-		System.out.println("hahaha");
+		System.out.println("空闲调用啊");
 		System.out.println("IDLE " + ioSession.getIdleCount(idleStatus));
 	}
 
@@ -43,6 +44,7 @@ public class TimeServerHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession ioSession, Object message) throws Exception {
 		String str = message.toString();
+		System.out.println("接受到的消息: " + message.toString());
 		if (str.trim().equalsIgnoreCase("quit")) {
 			ioSession.close();
 			return;
@@ -50,7 +52,6 @@ public class TimeServerHandler extends IoHandlerAdapter {
 
 		Date date = new Date();
 		ioSession.write(date.toString());
-		System.out.println("Message written..." + message.toString());
 	}
 
 	@Override

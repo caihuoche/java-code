@@ -29,4 +29,23 @@ public class TestList {
 		}
 		System.out.println(objects);
 	}
+
+	@Test
+	public void t2() {
+		int[] arr = {5, 4,10, 16, 11, 21, 30, 40};
+		int ac = 10;
+		int result = -1;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] < ac && (result < arr[i] || result == -1)) {
+				result = arr[i];
+			}
+		}
+		System.out.println(result);
+	}
+	@Test
+	public void t3() {
+		int[] arr = {5, 10, 16, 11, 21, 30, 40};
+		int ac = 10;
+
+	}
 }

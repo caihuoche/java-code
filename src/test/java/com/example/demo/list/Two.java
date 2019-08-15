@@ -9,7 +9,7 @@ import org.junit.Test;
  * @author yanghaiyu
  * @date 2019/08/14
  **/
-public class Tow {
+public class Two {
 
 	@Test
 	public void t1() {

@@ -73,8 +73,8 @@ public class Tow {
 	/**
 	 * 用字符串模拟两个大数相加
 	 *
-	 * @param n1 加数1
-	 * @param n2 加数2
+	 * @param a 加数1
+	 * @param b 加数2
 	 * @return 相加结果
 	 */
 	public static String add2(String a, String b) {
@@ -126,37 +126,36 @@ public class Tow {
 		boolean flag = true;
 		while (p1 != null || p2 != null) {
 			if (p1 == null) {
-				num = p2.val;
+				num = p2.val+a;
 				p2 = p2.next;
 
 			} else if (p2 == null) {
-				num = p1.val;
+				num = p1.val+a;
 				p1 = p1.next;
 
 			} else {
 				int x = p1.val;
 				int y = p2.val;
-				num = x + y;
+				num = x + y+a;
 				p1 = p1.next;
 				p2 = p2.next;
 			}
 			int m = (num) % 10;
 			if (flag) {
-				result = new ListNode(a == 1 ? m + 1 : m);
+				result = new ListNode(m);
 				p3 = result;
+				flag = false;
 			} else {
-				int i = a == 1 ? m + 1 : m;
-				if (i>=10)
-				result.next = new ListNode();
+
+				result.next = new ListNode(m);
 				result = result.next;
 			}
 			a = num / 10;
-			flag = false;
 
 		}
 		if (a == 1) {
 			ListNode listNode = new ListNode(a);
-			p3.next = listNode;
+			result.next = listNode;
 		}
 		return p3;
 	}

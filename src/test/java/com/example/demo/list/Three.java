@@ -16,24 +16,25 @@ public class Three {
 		char[] chars = s.toCharArray();
 		HashMap<Character, Integer> objects = new HashMap<>();
 		int max = 0;
-		boolean flag = true;
+		int left = 0;
 		for (int i = 0; i < chars.length; i++) {
 			Integer orDefault = objects.getOrDefault(chars[i], -1);
 			if (orDefault != -1) {
-				max = (i - orDefault) > max ? (i - orDefault) : max;
-				flag = false;
+				left = orDefault + 1 > left ? orDefault + 1 : left;
 			}
-			if (flag) {
-				max++;
-			}
+			max = (i + 1 - left) > max ? (i + 1 - left) : max;
+
 			objects.put(chars[i], i);
 		}
+
+
 		return max;
 	}
 
 	@Test
 	public void t1() {
-		int abcabcbb = lengthOfLongestSubstring("abcasdfg");
+		//"dvdf"
+		int abcabcbb = lengthOfLongestSubstring("dvdf");
 		System.out.println(abcabcbb);
 	}
 }

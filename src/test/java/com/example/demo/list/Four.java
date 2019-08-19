@@ -9,16 +9,34 @@ import org.junit.Test;
 public class Four {
 
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-		int nums1Max = nums1[nums1.length - 1];
-		int nums2Max = nums1[nums2.length - 1];
-		int nums1Min = nums1[0];
-		int nums2Min = nums1[0];
-		int max = nums1Max > nums2Max ? nums1Max : nums2Max;
-		int min = nums1Min > nums2Min ? nums2Min : nums1Min;
-		int mid = (max - min) / 2;
-
-
+		int mid = (nums1.length + nums2.length) / 2;
+		boolean flag = (nums1.length + nums2.length) % 2 == 1 ? true : false;
+		for (int i = 0; i < mid; i++) {
+			if (nums2[mid - i - 2] < nums1[i + 1] && nums1[i] < nums2[mid - i - 1]) {
+				return i;
+			}
+		}
+		System.out.println(i);
+		return 0;
 	}
+
+	public int binarySearch(int min, int max, int[] arr, int mid) {
+		int midIndex = (max + min) / 2;
+		if (arr[midIndex] > mid) {
+			if (midIndex == max) {
+				return max;
+			}
+			return binarySearch(min, midIndex, arr, mid);
+		} else if (arr[midIndex] < mid) {
+			if (midIndex == min) {
+				return min;
+			}
+			return binarySearch(midIndex, max, arr, mid);
+		} else {
+			return midIndex;
+		}
+	}
+
 
 	@Test
 	public void t1() {
@@ -26,5 +44,7 @@ public class Four {
 		int[] arr2 = {16, 17, 18, 24, 38};
 		double medianSortedArrays = findMedianSortedArrays(arr, arr2);
 		System.out.println(medianSortedArrays);
+		//int medianSortedArrays = binarySearch(0, arr2.length, arr2, 13);
+		//System.out.println(medianSortedArrays);
 	}
 }

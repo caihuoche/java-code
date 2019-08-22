@@ -28,9 +28,36 @@ public class Seven {
 		}
 	}
 
+	public int reverse2(int x) {
+		int reverse = 0;
+
+		return abc(x, reverse);
+	}
+
+	private int abc(int x, int reverse) {
+		if (x / 10 != 0) {
+			reverse = reverse + (x % 10);
+			if (reverse > Integer.MAX_VALUE/10 || reverse < Integer.MIN_VALUE/10) {
+				return 0;
+			}
+			reverse = reverse * 10;
+
+		} else {
+			reverse = reverse + (x % 10);
+			if (reverse > Integer.MAX_VALUE || reverse < Integer.MIN_VALUE) {
+				return 0;
+			}
+			return reverse;
+		}
+		return abc(x / 10, reverse);
+	}
+
 	@Test
 	public void t1() {
-		int reverse = reverse(-0);
+		int reverse = reverse2(1563847412);
+//int 		reverse = (214748365 ) * 10;
+//		int a = Integer.MAX_VALUE/ 10;
+//		int b = Integer.MIN_VALUE/ 10;
 		System.out.println(reverse);
 	}
 }

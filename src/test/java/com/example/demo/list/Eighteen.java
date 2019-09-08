@@ -17,21 +17,30 @@ public class Eighteen {
 		Arrays.sort(nums);
 		List<List<Integer>> objects = new ArrayList<>();
 		for (int i = 0; i < nums.length - 3; i++) {
-			for (int j = i + 1; i < nums.length - 2; j++) {
+			if (i > 0 && nums[i] == nums[i - 1]) {
+				continue;
+			}
+			for (int j = i + 1; j < nums.length - 2; j++) {
+				if (j > i + 1 && nums[j] == nums[j - 1]) {
+					continue;
+				}
 				int l = j + 1;
 				int r = nums.length - 1;
 				while (l < r) {
 					if (nums[i] + nums[j] + nums[l] + nums[r] < target)
 						l++;
-					if (nums[i] + nums[j] + nums[l] + nums[r] > target)
+					else if (nums[i] + nums[j] + nums[l] + nums[r] > target)
 						r--;
-					if (nums[i] + nums[j] + nums[l] + nums[r] == target) {
-						List<Integer> obj = new ArrayList<>();
-						obj.add(nums[i]);
-						obj.add(nums[j]);
-						obj.add(nums[l]);
-						obj.add(nums[r]);
-						objects.add(obj);
+					else if (nums[i] + nums[j] + nums[l] + nums[r] == target) {
+						if ((l == j + 1 || nums[l] != nums[l - 1])) {
+							List<Integer> obj = new ArrayList<>();
+							obj.add(nums[i]);
+							obj.add(nums[j]);
+							obj.add(nums[l]);
+							obj.add(nums[r]);
+							objects.add(obj);
+						}
+						l++;
 					}
 
 				}
@@ -42,8 +51,8 @@ public class Eighteen {
 
 	@Test
 	public void t1() {
-		int[] nums = {1, 0, -1, 0, -2, 2};
-		int target = 0;
+		int[] nums = {-2, 0, 0, 3, 3, -1};
+		int target = 5;
 		List<List<Integer>> lists = fourSum(nums, target);
 		System.out.println(lists);
 	}

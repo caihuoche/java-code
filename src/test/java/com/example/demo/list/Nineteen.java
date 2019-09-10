@@ -97,13 +97,5 @@ public class Nineteen {
 		ListNode listNode1 = removeNthFromEnd3(listNode, 1);
 		System.out.println(listNode1);
 	}
-}
 
-class ListNode {
-	int val;
-	ListNode next;
-
-	ListNode(int x) {
-		val = x;
-	}
 }

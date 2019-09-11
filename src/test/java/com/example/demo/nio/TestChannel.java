@@ -41,8 +41,8 @@ public class TestChannel {
         FileChannel finChannel = null;
         FileChannel fotChannel =null;
         try {
-            fin = new FileInputStream("/Users/vipkid/Desktop/1.jpg");
-             fot = new FileOutputStream("/Users/vipkid/Desktop/2.jpg");
+            fin = new FileInputStream("/Users/*/Desktop/1.jpg");
+             fot = new FileOutputStream("/Users/*/Desktop/2.jpg");
 
              finChannel = fin.getChannel();
              fotChannel = fot.getChannel();
@@ -82,8 +82,8 @@ public class TestChannel {
         FileChannel fileChannel = null;
         FileChannel fileChannel2 = null;
         try {
-            fileChannel = FileChannel.open(Paths.get("/Users/vipkid/Desktop/1.jpg"));
-             fileChannel2 = FileChannel.open(Paths.get("/Users/vipkid/Desktop/3.jpg"),StandardOpenOption.CREATE,StandardOpenOption.WRITE);
+            fileChannel = FileChannel.open(Paths.get("/Users/*/Desktop/1.jpg"));
+             fileChannel2 = FileChannel.open(Paths.get("/Users/*/Desktop/3.jpg"),StandardOpenOption.CREATE,StandardOpenOption.WRITE);
 
             ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
 

@@ -13,7 +13,7 @@ import org.junit.Test;
  *
  * 输入: ["dog","racecar","car"] 输出: "" 解释: 输入不存在公共前缀。
  *
- * @author vipkid
+ * @author caihuoche
  * @date 2019/09/03
  **/
 public class Fourteen {

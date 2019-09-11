@@ -12,7 +12,7 @@ import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
 /**
- * @author vipkid
+ * @author caihuoche
  * @date 2019/06/25
  **/
 public class MinaTimeServer {

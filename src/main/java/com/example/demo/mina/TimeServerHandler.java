@@ -10,7 +10,7 @@ import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.FilterEvent;
 
 /**
- * @author vipkid
+ * @author caihuoche
  * @date 2019/06/25
  **/
 public class TimeServerHandler extends IoHandlerAdapter {

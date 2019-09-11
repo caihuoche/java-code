@@ -109,8 +109,8 @@ public class TestChannel {
         FileChannel fileChannel = null;
         FileChannel fileChannel2 = null;
         try {
-            fileChannel = FileChannel.open(Paths.get("/Users/vipkid/Desktop/1.jpg"));
-            fileChannel2 = FileChannel.open(Paths.get("/Users/vipkid/Desktop/4.jpg"),StandardOpenOption.CREATE,StandardOpenOption.WRITE,StandardOpenOption.READ);
+            fileChannel = FileChannel.open(Paths.get("/Users/**id/Desktop/1.jpg"));
+            fileChannel2 = FileChannel.open(Paths.get("/Users/*/Desktop/4.jpg"),StandardOpenOption.CREATE,StandardOpenOption.WRITE,StandardOpenOption.READ);
 
             // 内存映射文件
             MappedByteBuffer map = fileChannel.map(FileChannel.MapMode.READ_ONLY, 0, fileChannel.size());
@@ -135,8 +135,8 @@ public class TestChannel {
      */
     @Test
     public  void t4() throws Exception {
-        RandomAccessFile accessFile = new RandomAccessFile("/Users/vipkid/Desktop/1.jpg", "rw");
-        RandomAccessFile accessFile2 = new RandomAccessFile("/Users/vipkid/Desktop/5.jpg", "rw");
+        RandomAccessFile accessFile = new RandomAccessFile("/Users/*/Desktop/1.jpg", "rw");
+        RandomAccessFile accessFile2 = new RandomAccessFile("/Users/*/Desktop/5.jpg", "rw");
 
 
         FileChannel channel = accessFile.getChannel();

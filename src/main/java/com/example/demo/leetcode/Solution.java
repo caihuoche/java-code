@@ -2,6 +2,7 @@ package com.example.demo.leetcode;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 class Solution {
 	public static int[] twoSum(int[] nums, int target) {
@@ -23,9 +24,16 @@ class Solution {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = {3, 2, 4};
+/*		int[] nums = {3, 2, 4};
 		int target = 6;
 		int[] ints = twoSum(nums, target);
-		System.out.println(Arrays.toString(ints));
+		System.out.println(Arrays.toString(ints));*/
+		/*int i = 10 >> 1;
+		int i2 = 10 << 1;
+		System.out.println(i);
+		System.out.println(i2);*/
+		HashMap<Object, Object> map = new HashMap<>();
+		ConcurrentHashMap<Object, Object> objectObjectConcurrentHashMap = new ConcurrentHashMap<>();
+		objectObjectConcurrentHashMap.put(2,3);
 	}
 }

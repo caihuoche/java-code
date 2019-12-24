@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -60,5 +64,13 @@ public class ProdCoumer {
 				prodCoumer.coume();
 			}
 		}).start();
+//		Executors.newFixedThreadPool()
+//		Executors.newScheduledThreadPool()
+//		Executors.newSingleThreadExecutor()
+//		Executors.newCachedThreadPool()
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(3,5,10, TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
+		threadPoolExecutor.execute(()->{
+			System.out.println(1222);
+		});
 	}
 }

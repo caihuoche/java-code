@@ -42,10 +42,10 @@ public class Alertnate implements Runnable {
 		thread.setName("A");
 		thread.start();
 		Thread thread2 = new Thread(alertnate);
-		thread2.setName("BB");
+		thread2.setName("B");
 		thread2.start();
 		Thread thread3 = new Thread(alertnate);
-		thread3.setName("CCC");
+		thread3.setName("C");
 		thread3.start();
 	}
 }

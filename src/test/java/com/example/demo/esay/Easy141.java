@@ -39,6 +39,11 @@ public class Easy141 {
 		hasCycle(l);
 	}
 
+	/**
+	 * 最优 双指针,
+	 * @param head
+	 * @return
+	 */
 	public boolean hasCycle2(ListNode head) {
 		if (head == null) return false;
 		ListNode fast = head.next;

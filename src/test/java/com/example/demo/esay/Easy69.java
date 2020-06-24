@@ -23,6 +23,11 @@ import org.junit.Test;
  * @date 2020/06/19 
  **/
 public class Easy69 {
+	/**
+	 * 为了溢出 不用乘法用除法. 依旧是逆向思维
+	 * @param x
+	 * @return
+	 */
 	public int mySqrt(int x) {
 		if (x == 0) return 0;
 		if (x == 1) return 1;

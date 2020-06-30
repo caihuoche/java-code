@@ -1,5 +1,7 @@
 package com.example.demo.listnode;
 
+import org.junit.Test;
+
 /**
  *
  给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。
@@ -19,7 +21,43 @@ package com.example.demo.listnode;
  **/
 public class Middle328 {
 	public ListNode oddEvenList(ListNode head) {
-		return null;
+		if (head ==null || head.next ==null || head.next.next==null) return head;
+		ListNode a = head;
+		ListNode b = head.next;
+		ListNode c = head.next;
+		ListNode d = head.next;
+		int sum =0;
+		while (c.next!=null){
+			sum ++;
+			if (sum%2 ==0){
+				b.next = c.next;
+				b= b.next;
+			}else {
+				a.next = c.next;
+				a=a.next;
+			}
+			c =c.next;
+		}
+		if (sum%2 == 1){
+			b.next=null;
+		}
+		a.next =d;
+		return head;
+	}
+
+	@Test
+	public void t1(){
+		ListNode listNode = new ListNode(1);
+		ListNode listNode2 = new ListNode(2);
+		ListNode listNode3 = new ListNode(3);
+		ListNode listNode4 = new ListNode(4);
+		ListNode listNode5 = new ListNode(5);
+		listNode.next=listNode2;
+		listNode2.next=listNode3;
+		listNode3.next=listNode4;
+		//listNode4.next=listNode5;
+		ListNode listNode1 = oddEvenList(listNode);
+		System.out.printf("");
 	}
 }
 
